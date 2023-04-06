@@ -5,7 +5,7 @@ create table user (
     user_id int primary key auto_increment,
     user_name nchar(20) not null,
     user_password char(32) not null check(length(user_password) between 8 and 32),
-		user_intro nchar(50),
+    user_intro nchar(50),
     user_email char(30) check(user_email like '%@%.%'),
     user_type enum('common', 'checker', 'admin') default 'common',
     user_status enum('normal', 'banned', 'deleted') default 'normal',
@@ -23,7 +23,7 @@ create table follow (
 
 create table message (
     mongodb_id varchar(50) primary key,
-		send_user_id int,
+    send_user_id int,
     receive_user_id int,
     send_time timestamp default now(),
     foreign key(send_user_id) references user(user_id),
